@@ -11,7 +11,7 @@ public class AddressBookMain {
         System.out.println("Welcome to address book program ");
         int option;
         do {
-            System.out.println("1.AddContac\n2.editContact\n3.display\n4.exit");
+            System.out.println("1.AddContac\n2.editContact\n3.display\n4.DeleteContact\n5.exit");
             Scanner scanner = new Scanner(System.in);
             option = scanner.nextInt();
             switch (option) {
@@ -26,12 +26,15 @@ public class AddressBookMain {
                 case 3:
                     addressBookMain.displaypPersionDetails();
                     break;
+                case 4:
+                     addressBookMain.deletePersionContact(addressBookMain.addressBook);
+                     break;
                 default:
                     System.out.println("choose from menue");
                     break;
             }
 
-        } while (option != 4);
+        } while (option != 5);
     }
 
     public PersonContact consolInput() {
@@ -86,6 +89,17 @@ public class AddressBookMain {
                 list.add(i, consolInput());
             } else
                 System.out.println("contact not available");
+        }
+    }
+
+    public void deletePersionContact(List<PersonContact>list){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a name");
+         persionName = scanner.next();
+        for (int i = 0; i< list.size();i++){
+            if(persionName.equals(list.get(i).firstName)){
+                list.remove(i);
+            }
         }
     }
 }
